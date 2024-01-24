@@ -1,12 +1,19 @@
-import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
+import {
+    ScrollView,
+    View,
+    Text,
+    StyleSheet,
+    TouchableHighlight,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
+import defaultStyles from "../config/defaultStyles";
 
 const TrapTiles = ({ view, traps }) => {
     if (view === "grid") {
         // Grid view implementation
         return (
-            <View style={styles.gridViewContainer}>
+            <ScrollView contentContainerStyle={styles.gridViewContainer}>
                 {traps.map((trap, index) => (
                     <TouchableHighlight
                         key={index}
@@ -25,7 +32,11 @@ const TrapTiles = ({ view, traps }) => {
                                 />
                             )}
                             <View style={styles.gridViewTextContainer}>
-                                <Text style={styles.gridViewName}>
+                                <Text
+                                    numberOfLines={2}
+                                    ellipsizeMode="tail"
+                                    style={styles.gridViewName}
+                                >
                                     {trap.name}
                                 </Text>
                                 <Text
@@ -42,12 +53,12 @@ const TrapTiles = ({ view, traps }) => {
                         </View>
                     </TouchableHighlight>
                 ))}
-            </View>
+            </ScrollView>
         );
     } else {
         // List view implementation
         return (
-            <View style={styles.listViewContainer}>
+            <ScrollView contentContainerStyle={styles.listViewContainer}>
                 {traps.map((trap, index) => (
                     <TouchableHighlight
                         key={index}
@@ -66,7 +77,11 @@ const TrapTiles = ({ view, traps }) => {
                                 />
                             )}
                             <View style={styles.listViewTextContainer}>
-                                <Text style={styles.listViewName}>
+                                <Text
+                                    numberOfLines={2}
+                                    ellipsizeMode="tail"
+                                    style={styles.listViewName}
+                                >
                                     {trap.name}
                                 </Text>
                                 <Text
@@ -83,7 +98,7 @@ const TrapTiles = ({ view, traps }) => {
                         </View>
                     </TouchableHighlight>
                 ))}
-            </View>
+            </ScrollView>
         );
     }
 };
@@ -95,6 +110,7 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
         justifyContent: "space-between",
         paddingHorizontal: 20,
+        paddingBottom: 120,
     },
     gridViewTouchable: {
         justifyContent: "center",
@@ -102,7 +118,7 @@ const styles = StyleSheet.create({
         height: 75,
         marginBottom: 20,
         borderRadius: 10,
-        backgroundColor: colors.white,
+        backgroundColor: defaultStyles.colors.white,
 
         shadowOffset: { width: 5, height: 8 },
         shadowOpacity: 0.1,
@@ -115,6 +131,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     gridViewTextContainer: {
+        width: "70%",
         marginLeft: 10,
     },
     gridViewName: {
@@ -126,11 +143,10 @@ const styles = StyleSheet.create({
     // List view styles
     listViewContainer: {
         paddingHorizontal: 20,
-
+        paddingBottom: 120,
         shadowOffset: { width: 10, height: 8 },
         shadowOpacity: 0.1,
         shadowRadius: 10,
-        elevation: 4,
     },
     listViewTouchable: {
         justifyContent: "center",
@@ -138,7 +154,8 @@ const styles = StyleSheet.create({
         height: 75,
         marginBottom: 20,
         borderRadius: 10,
-        backgroundColor: colors.white,
+        backgroundColor: defaultStyles.colors.white,
+        elevation: 4,
     },
     listViewTile: {
         flexDirection: "row",
@@ -146,6 +163,7 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     listViewTextContainer: {
+        width: "90%",
         marginLeft: 10,
     },
     listViewName: {

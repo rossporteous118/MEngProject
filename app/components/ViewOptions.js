@@ -1,8 +1,8 @@
 import { View, TouchableOpacity, StyleSheet } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import colors from "../config/colors";
+import defaultStyles from "../config/defaultStyles";
 
-const ViewOptions = ({ handleGridPress, handleListPress, view }) => {
+const ViewOptions = ({ onPress, view }) => {
     const styles = StyleSheet.create({
         container: {
             flexDirection: "row",
@@ -12,13 +12,19 @@ const ViewOptions = ({ handleGridPress, handleListPress, view }) => {
         },
         gridButton: {
             padding: 8,
-            backgroundColor: view === "grid" ? colors.blue : colors.white,
+            backgroundColor:
+                view === "grid"
+                    ? defaultStyles.colors.blue
+                    : defaultStyles.colors.white,
             borderTopLeftRadius: 10,
             borderBottomLeftRadius: 10,
         },
         listButton: {
             padding: 8,
-            backgroundColor: view === "list" ? colors.blue : colors.white,
+            backgroundColor:
+                view === "list"
+                    ? defaultStyles.colors.blue
+                    : defaultStyles.colors.white,
             borderTopRightRadius: 10,
             borderBottomRightRadius: 10,
         },
@@ -27,23 +33,31 @@ const ViewOptions = ({ handleGridPress, handleListPress, view }) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity
-                onPress={handleGridPress}
+                onPress={() => onPress("grid")}
                 style={styles.gridButton}
             >
                 <MaterialCommunityIcons
                     name="view-grid"
                     size={30}
-                    color={view === "grid" ? colors.white : colors.black}
+                    color={
+                        view === "grid"
+                            ? defaultStyles.colors.white
+                            : defaultStyles.colors.black
+                    }
                 />
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={handleListPress}
+                onPress={() => onPress("list")}
                 style={styles.listButton}
             >
                 <MaterialCommunityIcons
                     name="view-list"
                     size={30}
-                    color={view === "list" ? colors.white : colors.black}
+                    color={
+                        view === "list"
+                            ? defaultStyles.colors.white
+                            : defaultStyles.colors.black
+                    }
                 />
             </TouchableOpacity>
         </View>

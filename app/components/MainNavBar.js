@@ -1,28 +1,39 @@
-import { View, TouchableOpacity, StyleSheet } from "react-native";
 import {
-    MaterialCommunityIcons,
-    MaterialIcons,
-    FontAwesome6,
-} from "@expo/vector-icons";
-import colors from "../config/colors";
+    View,
+    TouchableOpacity,
+    Modal,
+    Button,
+    StyleSheet,
+} from "react-native";
+import { useState } from "react";
+import { MaterialIcons, FontAwesome6 } from "@expo/vector-icons";
+import AddScreen from "../screens/AddScreen";
+import defaultStyles from "../config/defaultStyles";
 
 const MainNavBar = () => {
+    const [addModalVisible, setAddModalVisible] = useState(false);
+
     return (
-        <View style={styles.container}>
-            <TouchableOpacity>
-                <MaterialCommunityIcons name="help" size={30} color="black" />
-            </TouchableOpacity>
-            <View style={styles.borderCircle}>
-                <View style={styles.addButton}>
-                    <TouchableOpacity onPress={() => console.log("adding")}>
-                        <FontAwesome6 name="add" size={35} color="white" />
+        <>
+            <View style={styles.container}>
+                <TouchableOpacity>
+                    <FontAwesome6 name="question" size={30} color="black" />
+                </TouchableOpacity>
+                <View style={styles.borderCircle}>
+                    <TouchableOpacity onPress={() => setAddModalVisible(true)}>
+                        <View style={styles.addButton}>
+                            <FontAwesome6 name="add" size={30} color="white" />
+                        </View>
                     </TouchableOpacity>
                 </View>
+                <TouchableOpacity>
+                    <MaterialIcons name="settings" size={30} color="black" />
+                </TouchableOpacity>
             </View>
-            <TouchableOpacity>
-                <MaterialIcons name="settings" size={30} color="black" />
-            </TouchableOpacity>
-        </View>
+            <Modal visible={addModalVisible} animationType="slide">
+                <AddScreen closeModal={() => setAddModalVisible(false)} />
+            </Modal>
+        </>
     );
 };
 
@@ -35,34 +46,34 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        width: "100%",
         height: 100,
         paddingBottom: 20,
         paddingHorizontal: 40,
-        backgroundColor: colors.white,
+        backgroundColor: defaultStyles.colors.white,
 
         shadowOffset: { width: 0, height: -2 },
         shadowOpacity: 0.1,
         shadowRadius: 10,
         elevation: 2,
     },
+    borderCircle: {
+        top: -20,
+        left: 5,
+        height: 100,
+        width: 100,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: defaultStyles.colors.white,
+        borderRadius: 100,
+    },
     addButton: {
-        height: "80%",
-        width: "80%",
+        height: 75,
+        width: 75,
         justifyContent: "center",
         alignItems: "center",
         padding: 20,
-        backgroundColor: colors.blue,
-        borderRadius: 80,
-    },
-    borderCircle: {
-        height: 100,
-        width: 100,
-        top: -20,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "white",
-        borderRadius: 80,
+        backgroundColor: defaultStyles.colors.blue,
+        borderRadius: 100,
     },
 });
 

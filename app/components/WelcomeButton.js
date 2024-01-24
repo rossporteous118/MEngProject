@@ -1,5 +1,5 @@
 import { TouchableOpacity, Text, StyleSheet, Platform } from "react-native";
-import colors from "../config/colors";
+import defaultStyles from "../config/defaultStyles";
 
 const WelcomeButton = ({ title, onPress, color = "primary" }) => {
     return (
@@ -19,13 +19,13 @@ const styles = StyleSheet.create({
         height: 60,
         width: "100%",
         borderWidth: 2,
-        borderColor: colors.black,
+        borderColor: defaultStyles.colors.black,
         borderRadius: 35,
         justifyContent: "center",
         alignItems: "center",
     },
     buttonText: {
-        fontFamily: Platform.OS === "android" ? "Roboto" : "Avenir",
+        fontFamily: defaultStyles.font,
         fontSize: 20,
         fontWeight: "600",
     },
