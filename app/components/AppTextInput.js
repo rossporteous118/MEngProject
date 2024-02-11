@@ -28,12 +28,14 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     icon: {
+        marginTop: 3,
         marginRight: 10,
     },
     textInput: {
         width: "100%",
         fontSize: 18,
         ...defaultStyles.defaultFont,
+        color: defaultStyles.colors.darkgrey,
     },
 });
 

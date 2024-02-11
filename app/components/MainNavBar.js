@@ -10,7 +10,7 @@ import { MaterialIcons, FontAwesome6 } from "@expo/vector-icons";
 import AddScreen from "../screens/AddScreen";
 import defaultStyles from "../config/defaultStyles";
 
-const MainNavBar = () => {
+const MainNavBar = ({ handleAddTrap }) => {
     const [addModalVisible, setAddModalVisible] = useState(false);
 
     return (
@@ -31,7 +31,10 @@ const MainNavBar = () => {
                 </TouchableOpacity>
             </View>
             <Modal visible={addModalVisible} animationType="slide">
-                <AddScreen closeModal={() => setAddModalVisible(false)} />
+                <AddScreen
+                    handleAddTrap={handleAddTrap}
+                    closeModal={() => setAddModalVisible(false)}
+                />
             </Modal>
         </>
     );

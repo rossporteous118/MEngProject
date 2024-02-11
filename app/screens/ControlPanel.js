@@ -8,13 +8,24 @@ import defaultStyles from "../config/defaultStyles";
 
 const ControlPanel = () => {
     // Dummy data to be removed
-    const traps = [
+    const initialTraps = [
         { id: 1, name: "Trap 1", status: "Inactive" },
         { id: 2, name: "Trap 2", status: "Inactive" },
-        { id: 3, name: "Trap 3", status: "active" },
+        { id: 3, name: "Trap 3", status: "Active" },
     ];
 
     const [view, setView] = useState("grid");
+
+    const [traps, setTraps] = useState(initialTraps);
+    const handleAddTrap = (trap) => {
+        const newTrap = {
+            id: initialTraps.length + 1,
+            name: trap.name,
+            status: "Inactive",
+        };
+        const updatedTraps = [...traps, newTrap];
+        setTraps(updatedTraps);
+    };
 
     return (
         <View style={styles.container}>
@@ -23,7 +34,7 @@ const ControlPanel = () => {
             </View>
             <ViewOptions onPress={(value) => setView(value)} view={view} />
             <TrapTiles view={view} traps={traps} />
-            <MainNavBar />
+            <MainNavBar handleAddTrap={handleAddTrap} />
         </View>
     );
 };
