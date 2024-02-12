@@ -14,9 +14,7 @@ const ControlPanel = () => {
         { id: 2, name: "Trap 2", status: "Inactive" },
         { id: 3, name: "Trap 3", status: "Active" },
     ];
-
-    const [view, setView] = useState("grid");
-
+    // State variable to store traps
     const [traps, setTraps] = useState(initialTraps);
     const handleAddTrap = (trap) => {
         const newTrap = {
@@ -28,6 +26,15 @@ const ControlPanel = () => {
         setTraps(updatedTraps);
     };
 
+    // State variable to store the selected view
+    const [view, setView] = useState("grid");
+
+    const [command, setCommand] = useState(false);
+    const sendData = (data) => {
+        console.log(data);
+        setCommand(data);
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
@@ -35,9 +42,9 @@ const ControlPanel = () => {
             </View>
             <View style={styles.optionsContainer}>
                 <ViewOptions onPress={(value) => setView(value)} view={view} />
-                <BluetoothStatus data="placeholder" />
+                <BluetoothStatus command={command} />
             </View>
-            <TrapTiles view={view} traps={traps} />
+            <TrapTiles view={view} traps={traps} sendData={sendData} />
             <MainNavBar handleAddTrap={handleAddTrap} />
         </View>
     );

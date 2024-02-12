@@ -1,104 +1,139 @@
+import { useState } from "react";
 import {
     ScrollView,
     View,
     Text,
-    StyleSheet,
+    Modal,
     TouchableHighlight,
+    StyleSheet,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import TrapScreen from "../screens/TrapScreen";
 import colors from "../config/colors";
 import defaultStyles from "../config/defaultStyles";
 
-const TrapTiles = ({ view, traps }) => {
+const TrapTiles = ({ view, traps, sendData }) => {
+    const [trapModalVisible, setTrapModalVisible] = useState(false);
+    const [selectedTrap, setSelectedTrap] = useState(null);
+
+    const handleTrapPress = (trap) => {
+        setTrapModalVisible(true);
+        setSelectedTrap(trap);
+    };
+
     if (view === "grid") {
         // Grid view implementation
         return (
-            <ScrollView contentContainerStyle={styles.gridViewContainer}>
-                {traps.map((trap, index) => (
-                    <TouchableHighlight
-                        key={index}
-                        onPress={() => console.log(trap.name)}
-                        underlayColor={colors.lightgrey}
-                        style={styles.gridViewTouchable}
-                    >
-                        <View style={styles.gridViewTile}>
-                            {trap.status === "Active" && (
-                                <MaterialCommunityIcons name="lock" size={35} />
-                            )}
-                            {trap.status === "Inactive" && (
-                                <MaterialCommunityIcons
-                                    name="lock-open"
-                                    size={35}
-                                />
-                            )}
-                            <View style={styles.gridViewTextContainer}>
-                                <Text
-                                    numberOfLines={2}
-                                    ellipsizeMode="tail"
-                                    style={styles.gridViewName}
-                                >
-                                    {trap.name}
-                                </Text>
-                                <Text
-                                    style={{
-                                        color:
-                                            trap.status === "Active"
-                                                ? colors.green
-                                                : colors.red,
-                                    }}
-                                >
-                                    {trap.status}
-                                </Text>
+            <>
+                <ScrollView contentContainerStyle={styles.gridViewContainer}>
+                    {traps.map((trap, index) => (
+                        <TouchableHighlight
+                            key={index}
+                            onPress={() => handleTrapPress(trap)}
+                            underlayColor={colors.lightgrey}
+                            style={styles.gridViewTouchable}
+                        >
+                            <View style={styles.gridViewTile}>
+                                {trap.status === "Active" && (
+                                    <MaterialCommunityIcons
+                                        name="lock"
+                                        size={35}
+                                    />
+                                )}
+                                {trap.status === "Inactive" && (
+                                    <MaterialCommunityIcons
+                                        name="lock-open"
+                                        size={35}
+                                    />
+                                )}
+                                <View style={styles.gridViewTextContainer}>
+                                    <Text
+                                        numberOfLines={2}
+                                        ellipsizeMode="tail"
+                                        style={styles.gridViewName}
+                                    >
+                                        {trap.name}
+                                    </Text>
+                                    <Text
+                                        style={{
+                                            color:
+                                                trap.status === "Active"
+                                                    ? colors.green
+                                                    : colors.red,
+                                        }}
+                                    >
+                                        {trap.status}
+                                    </Text>
+                                </View>
                             </View>
-                        </View>
-                    </TouchableHighlight>
-                ))}
-            </ScrollView>
+                        </TouchableHighlight>
+                    ))}
+                </ScrollView>
+                <Modal visible={trapModalVisible} animationType="slide">
+                    <TrapScreen
+                        trap={selectedTrap}
+                        sendData={sendData}
+                        closeModal={() => setTrapModalVisible(false)}
+                    />
+                </Modal>
+            </>
         );
     } else {
         // List view implementation
         return (
-            <ScrollView contentContainerStyle={styles.listViewContainer}>
-                {traps.map((trap, index) => (
-                    <TouchableHighlight
-                        key={index}
-                        onPress={() => console.log(trap.name)}
-                        underlayColor={colors.lightgrey}
-                        style={styles.listViewTouchable}
-                    >
-                        <View style={styles.listViewTile}>
-                            {trap.status === "Active" && (
-                                <MaterialCommunityIcons name="lock" size={35} />
-                            )}
-                            {trap.status === "Inactive" && (
-                                <MaterialCommunityIcons
-                                    name="lock-open"
-                                    size={35}
-                                />
-                            )}
-                            <View style={styles.listViewTextContainer}>
-                                <Text
-                                    numberOfLines={2}
-                                    ellipsizeMode="tail"
-                                    style={styles.listViewName}
-                                >
-                                    {trap.name}
-                                </Text>
-                                <Text
-                                    style={{
-                                        color:
-                                            trap.status === "Active"
-                                                ? colors.green
-                                                : colors.red,
-                                    }}
-                                >
-                                    {trap.status}
-                                </Text>
+            <>
+                <ScrollView contentContainerStyle={styles.listViewContainer}>
+                    {traps.map((trap, index) => (
+                        <TouchableHighlight
+                            key={index}
+                            onPress={() => handleTrapPress(trap)}
+                            underlayColor={colors.lightgrey}
+                            style={styles.listViewTouchable}
+                        >
+                            <View style={styles.listViewTile}>
+                                {trap.status === "Active" && (
+                                    <MaterialCommunityIcons
+                                        name="lock"
+                                        size={35}
+                                    />
+                                )}
+                                {trap.status === "Inactive" && (
+                                    <MaterialCommunityIcons
+                                        name="lock-open"
+                                        size={35}
+                                    />
+                                )}
+                                <View style={styles.listViewTextContainer}>
+                                    <Text
+                                        numberOfLines={2}
+                                        ellipsizeMode="tail"
+                                        style={styles.listViewName}
+                                    >
+                                        {trap.name}
+                                    </Text>
+                                    <Text
+                                        style={{
+                                            color:
+                                                trap.status === "Active"
+                                                    ? colors.green
+                                                    : colors.red,
+                                        }}
+                                    >
+                                        {trap.status}
+                                    </Text>
+                                </View>
                             </View>
-                        </View>
-                    </TouchableHighlight>
-                ))}
-            </ScrollView>
+                        </TouchableHighlight>
+                    ))}
+                </ScrollView>
+                <Modal visible={trapModalVisible} animationType="slide">
+                    <TrapScreen
+                        trap={selectedTrap}
+                        sendData={sendData}
+                        closeModal={() => setTrapModalVisible(false)}
+                    />
+                </Modal>
+            </>
         );
     }
 };

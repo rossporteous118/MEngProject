@@ -14,7 +14,10 @@ const MainNavBar = ({ handleAddTrap }) => {
                     <FontAwesome6 name="question" size={30} color="black" />
                 </TouchableOpacity>
                 <View style={styles.borderCircle}>
-                    <TouchableOpacity onPress={() => setAddModalVisible(true)}>
+                    <TouchableOpacity
+                        activeOpacity={0.6}
+                        onPress={() => setAddModalVisible(true)}
+                    >
                         <View style={styles.addButton}>
                             <FontAwesome6 name="add" size={30} color="white" />
                         </View>

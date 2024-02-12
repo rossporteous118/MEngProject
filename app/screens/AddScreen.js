@@ -24,7 +24,7 @@ const AddScreen = ({ handleAddTrap, closeModal }) => {
                     onPress={closeModal}
                     style={styles.closeButton}
                 >
-                    <MaterialCommunityIcons name="close" size={35} />
+                    <MaterialCommunityIcons name="close" size={30} />
                 </TouchableOpacity>
             </View>
             <View style={styles.mainContainer}>
@@ -48,7 +48,7 @@ const AddScreen = ({ handleAddTrap, closeModal }) => {
                                     </Text>
                                 )}
                             </View>
-                            <View style={styles.buttonContainer}>
+                            <View>
                                 <TouchableOpacity
                                     onPress={handleSubmit}
                                     activeOpacity={0.6}
