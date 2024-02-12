@@ -1,4 +1,4 @@
-import { TouchableOpacity, Text, StyleSheet, Platform } from "react-native";
+import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import defaultStyles from "../config/defaultStyles";
 
 const WelcomeButton = ({ title, onPress, color = "primary" }) => {

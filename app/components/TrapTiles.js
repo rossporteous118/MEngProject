@@ -144,9 +144,6 @@ const styles = StyleSheet.create({
     listViewContainer: {
         paddingHorizontal: 20,
         paddingBottom: 120,
-        shadowOffset: { width: 10, height: 8 },
-        shadowOpacity: 0.1,
-        shadowRadius: 10,
     },
     listViewTouchable: {
         justifyContent: "center",
@@ -155,6 +152,10 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         borderRadius: 10,
         backgroundColor: defaultStyles.colors.white,
+
+        shadowOffset: { width: 10, height: 8 },
+        shadowOpacity: 0.1,
+        shadowRadius: 10,
         elevation: 4,
     },
     listViewTile: {

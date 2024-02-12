@@ -6,7 +6,6 @@ const ViewOptions = ({ onPress, view }) => {
     const styles = StyleSheet.create({
         container: {
             flexDirection: "row",
-            marginLeft: 20,
             marginVertical: 15,
             alignItems: "center",
         },

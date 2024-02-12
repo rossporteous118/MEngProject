@@ -1,10 +1,4 @@
-import {
-    View,
-    TouchableOpacity,
-    Modal,
-    Button,
-    StyleSheet,
-} from "react-native";
+import { View, TouchableOpacity, Modal, StyleSheet } from "react-native";
 import { useState } from "react";
 import { MaterialIcons, FontAwesome6 } from "@expo/vector-icons";
 import AddScreen from "../screens/AddScreen";

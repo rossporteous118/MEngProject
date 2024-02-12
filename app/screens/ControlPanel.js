@@ -3,6 +3,7 @@ import { useState } from "react";
 import Constants from "expo-constants";
 import MainNavBar from "../components/MainNavBar";
 import ViewOptions from "../components/ViewOptions";
+import BluetoothStatus from "../components/BluetoothStatus";
 import TrapTiles from "../components/TrapTiles";
 import defaultStyles from "../config/defaultStyles";
 
@@ -32,7 +33,10 @@ const ControlPanel = () => {
             <View style={styles.headerContainer}>
                 <Text style={styles.headerText}>Control Panel</Text>
             </View>
-            <ViewOptions onPress={(value) => setView(value)} view={view} />
+            <View style={styles.optionsContainer}>
+                <ViewOptions onPress={(value) => setView(value)} view={view} />
+                <BluetoothStatus data="placeholder" />
+            </View>
             <TrapTiles view={view} traps={traps} />
             <MainNavBar handleAddTrap={handleAddTrap} />
         </View>
@@ -55,6 +59,12 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 10,
         elevation: 2,
+    },
+    optionsContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginHorizontal: 20,
     },
     headerText: {
         ...defaultStyles.header,
