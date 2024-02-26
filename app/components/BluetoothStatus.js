@@ -12,7 +12,7 @@ const TRAP_UUID = "3fefbcb1-e7b1-4d14-8252-135c94a4f0cf";
 // BLE characteristics
 const TOGGLE_TRAP_UUID = "aff35ec3-73fc-44dd-bd28-9da6c772cdc1";
 
-const BluetoothStatus = (command) => {
+const BluetoothStatus = () => {
     // Style object
     const [connectionStatus, setConnectionStatus] = useState("Searching...");
     const styles = StyleSheet.create({
@@ -101,18 +101,13 @@ const BluetoothStatus = (command) => {
                     deviceID,
                     trapService,
                     toggleCharacteristic,
-                    btoa(command)
+                    btoa("hello")
                 );
             if (characteristic) console.log("Data sent to characteristic");
         } catch (error) {
             console.error("Error writing data to characteristic:", error);
         }
     };
-
-    // useEffect(() => {
-    //     command = command["command"];
-    //     writeData(command);
-    // }, [command]);
 
     // Begin searching for devices at beginning
     useEffect(() => {

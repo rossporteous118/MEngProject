@@ -12,7 +12,7 @@ import TrapScreen from "../screens/TrapScreen";
 import colors from "../config/colors";
 import defaultStyles from "../config/defaultStyles";
 
-const TrapTiles = ({ view, traps, sendData }) => {
+const TrapTiles = ({ view, traps }) => {
     const [trapModalVisible, setTrapModalVisible] = useState(false);
     const [selectedTrap, setSelectedTrap] = useState(null);
 
@@ -72,7 +72,6 @@ const TrapTiles = ({ view, traps, sendData }) => {
                 <Modal visible={trapModalVisible} animationType="slide">
                     <TrapScreen
                         trap={selectedTrap}
-                        sendData={sendData}
                         closeModal={() => setTrapModalVisible(false)}
                     />
                 </Modal>

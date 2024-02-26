@@ -29,12 +29,6 @@ const ControlPanel = () => {
     // State variable to store the selected view
     const [view, setView] = useState("grid");
 
-    const [command, setCommand] = useState(false);
-    const sendData = (data) => {
-        console.log(data);
-        setCommand(data);
-    };
-
     return (
         <View style={styles.container}>
             <View style={styles.headerContainer}>
@@ -44,7 +38,7 @@ const ControlPanel = () => {
                 <ViewOptions onPress={(value) => setView(value)} view={view} />
                 <BluetoothStatus command={command} />
             </View>
-            <TrapTiles view={view} traps={traps} sendData={sendData} />
+            <TrapTiles view={view} traps={traps} />
             <MainNavBar handleAddTrap={handleAddTrap} />
         </View>
     );

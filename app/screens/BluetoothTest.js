@@ -10,7 +10,7 @@ const TRAP_UUID = "3fefbcb1-e7b1-4d14-8252-135c94a4f0cf";
 // Characteristics
 const TOGGLE_TRAP_UUID = "aff35ec3-73fc-44dd-bd28-9da6c772cdc1";
 
-const TestPage = () => {
+const TestPage = (command) => {
     const [deviceID, setDeviceID] = useState(null);
     const [connectionStatus, setConnectionStatus] = useState("Searching...");
 
@@ -79,8 +79,9 @@ const TestPage = () => {
                     deviceID,
                     trapService,
                     toggleCharacteristic,
-                    btoa("Test value")
+                    btoa(command)
                 );
+            console.log(command);
             if (characteristic) console.log("Data sent to characteristic");
         } catch (error) {
             console.error("Error writing data to characteristic:", error);
