@@ -6,11 +6,12 @@ import SafeScreen from "../components/SafeScreen";
 import AppTextInput from "../components/AppTextInput";
 import defaultStyles from "../config/defaultStyles";
 
-const validationSchema = Yup.object().shape({
-    name: Yup.string().required().min(3).max(30).label("Name"),
-});
-
 const AddScreen = ({ handleAddTrap, closeModal }) => {
+    const validationSchema = Yup.object().shape({
+        id: Yup.string().required().min(3).max(10).label("ID"),
+        name: Yup.string().required().min(3).max(30).label("Name"),
+    });
+
     const handleSubmit = (values) => {
         handleAddTrap(values);
         closeModal();
@@ -29,13 +30,24 @@ const AddScreen = ({ handleAddTrap, closeModal }) => {
             </View>
             <View style={styles.mainContainer}>
                 <Formik
-                    initialValues={{ name: "" }}
+                    initialValues={{ id: "", name: "" }}
                     onSubmit={handleSubmit}
                     validationSchema={validationSchema}
                 >
                     {({ handleChange, handleSubmit, errors }) => (
                         <>
                             <View>
+                                <AppTextInput
+                                    icon="shield"
+                                    autoCorrect={false}
+                                    placeholder="ID"
+                                    onChangeText={handleChange("id")}
+                                />
+                                {errors.id && (
+                                    <Text style={styles.errorText}>
+                                        {errors.id}
+                                    </Text>
+                                )}
                                 <AppTextInput
                                     icon="tag"
                                     autoCorrect={false}

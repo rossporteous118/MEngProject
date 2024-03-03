@@ -3,7 +3,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import SafeScreen from "../components/SafeScreen";
 import defaultStyles from "../config/defaultStyles";
 
-const TrapScreen = ({ trap, sendData, closeModal }) => {
+const TrapScreen = ({ trap, closeModal, writeData }) => {
     // Set display icon
     const icon = trap.status === "Active" ? "lock" : "lock-open";
     // Set confirmtion message
@@ -25,12 +25,14 @@ const TrapScreen = ({ trap, sendData, closeModal }) => {
                     onPress={() =>
                         Alert.alert(
                             "Warning!",
-                            `Are you sure you want to ${command} ${trap.name}.`,
+                            `Are you sure you want to ${command} ${trap.name}`,
                             [
                                 {
                                     text: "YES",
-                                    onPress: () =>
-                                        sendData(`${command}-${trap.name}`),
+                                    onPress: () => {
+                                        writeData(`${command}-${trap.id}`),
+                                            closeModal();
+                                    },
                                 },
                                 { text: "NO" },
                             ]
@@ -45,6 +47,21 @@ const TrapScreen = ({ trap, sendData, closeModal }) => {
                         color={defaultStyles.colors.white}
                     />
                 </TouchableOpacity>
+
+                <View style={styles.textContainer}>
+                    <View style={styles.textRow}>
+                        <Text style={styles.typeCell}>ID:</Text>
+                        <Text style={styles.textCell}>{trap.id}</Text>
+                    </View>
+                    <View style={styles.textRow}>
+                        <Text style={styles.typeCell}>Name:</Text>
+                        <Text style={styles.textCell}>{trap.name}</Text>
+                    </View>
+                    <View style={styles.textRow}>
+                        <Text style={styles.typeCell}>Status:</Text>
+                        <Text style={styles.textCell}>{trap.status}</Text>
+                    </View>
+                </View>
 
                 <View style={styles.buttonContainer}>
                     <TouchableOpacity
@@ -91,6 +108,23 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 5, height: 5 },
         shadowOpacity: 0.2,
         shadowRadius: 10,
+    },
+    textRow: {
+        width: "90%",
+        flexDirection: "row",
+        alignItems: "center",
+        marginBottom: 8,
+    },
+    typeCell: {
+        flex: 1,
+        fontWeight: "600",
+        fontSize: 18,
+        ...defaultStyles.defaultFont,
+    },
+    textCell: {
+        flex: 3,
+        fontSize: 18,
+        ...defaultStyles.defaultFont,
     },
     buttonContainer: {
         width: "100%",

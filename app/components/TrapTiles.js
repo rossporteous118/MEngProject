@@ -4,6 +4,7 @@ import {
     View,
     Text,
     Modal,
+    Alert,
     TouchableHighlight,
     StyleSheet,
 } from "react-native";
@@ -12,13 +13,18 @@ import TrapScreen from "../screens/TrapScreen";
 import colors from "../config/colors";
 import defaultStyles from "../config/defaultStyles";
 
-const TrapTiles = ({ view, traps }) => {
+const TrapTiles = ({ view, traps, connectionStatus, writeData }) => {
     const [trapModalVisible, setTrapModalVisible] = useState(false);
     const [selectedTrap, setSelectedTrap] = useState(null);
 
+    // Only allow trap select if modem is connected.
     const handleTrapPress = (trap) => {
-        setTrapModalVisible(true);
-        setSelectedTrap(trap);
+        if (connectionStatus != "Connected") {
+            Alert.alert("Please connect to modem before modifying traps");
+        } else {
+            setTrapModalVisible(true);
+            setSelectedTrap(trap);
+        }
     };
 
     if (view === "grid") {
@@ -73,6 +79,7 @@ const TrapTiles = ({ view, traps }) => {
                     <TrapScreen
                         trap={selectedTrap}
                         closeModal={() => setTrapModalVisible(false)}
+                        writeData={writeData}
                     />
                 </Modal>
             </>
@@ -128,8 +135,8 @@ const TrapTiles = ({ view, traps }) => {
                 <Modal visible={trapModalVisible} animationType="slide">
                     <TrapScreen
                         trap={selectedTrap}
-                        sendData={sendData}
                         closeModal={() => setTrapModalVisible(false)}
+                        writeData={writeData}
                     />
                 </Modal>
             </>

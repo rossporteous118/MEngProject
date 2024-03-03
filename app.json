@@ -1,25 +1,36 @@
 {
-    "expo": {
-        "name": "MEngProject",
-        "slug": "MEngProject",
-        "version": "1.0.0",
-        "orientation": "portrait",
-        "userInterfaceStyle": "light",
-        "splash": {
-            "resizeMode": "contain",
-            "backgroundColor": "#ffffff"
-        },
-        "assetBundlePatterns": ["**/*"],
-        "ios": {
-            "supportsTablet": true,
-            "bundleIdentifier": "com.anonymous.MEngProject"
-        },
-        "android": {
-            "adaptiveIcon": {
-                "backgroundColor": "#ffffff"
-            },
-            "permissions": "android.permission.DETECT_SCREEN_CAPTURE",
-            "package": "com.anonymous.MEngProject"
-        }
+  "expo": {
+    "name": "MEngProject",
+    "slug": "MEngProject",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.MEngProject"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      },
+      "permissions": "android.permission.DETECT_SCREEN_CAPTURE",
+      "package": "com.anonymous.MEngProject"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5c09b77b-3c49-4880-a046-55a9097cee98"
+      }
+    },
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/5c09b77b-3c49-4880-a046-55a9097cee98"
     }
+  }
 }
