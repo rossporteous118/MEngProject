@@ -3,7 +3,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import SafeScreen from "../components/SafeScreen";
 import defaultStyles from "../config/defaultStyles";
 
-const TrapScreen = ({ trap, closeModal, writeData }) => {
+const TrapScreen = ({ trap, closeModal, writeData, updateStatus }) => {
     // Set display icon
     const icon = trap.status === "Active" ? "lock" : "lock-open";
     // Set confirmtion message
@@ -30,8 +30,7 @@ const TrapScreen = ({ trap, closeModal, writeData }) => {
                                 {
                                     text: "YES",
                                     onPress: () => {
-                                        writeData(`${command}-${trap.id}`),
-                                            closeModal();
+                                        writeData(`${command}-${trap.id}`);
                                     },
                                 },
                                 { text: "NO" },
@@ -72,6 +71,30 @@ const TrapScreen = ({ trap, closeModal, writeData }) => {
                 </View>
 
                 <View style={styles.buttonContainer}>
+                    <TouchableOpacity
+                        onPress={() =>
+                            Alert.alert(
+                                "Important!",
+                                `Confirm the desired operation was successful.`,
+                                [
+                                    {
+                                        text: "YES",
+                                        onPress: () => {
+                                            updateStatus(
+                                                `${command}-${trap.id}`
+                                            ),
+                                                closeModal();
+                                        },
+                                    },
+                                    { text: "NO" },
+                                ]
+                            )
+                        }
+                        activeOpacity={0.6}
+                        style={styles.confirmButton}
+                    >
+                        <Text style={styles.buttonText}>Confirm Operation</Text>
+                    </TouchableOpacity>
                     <TouchableOpacity
                         onPress={closeModal}
                         activeOpacity={0.6}
@@ -137,6 +160,15 @@ const styles = StyleSheet.create({
     buttonContainer: {
         width: "100%",
         marginBottom: 50,
+    },
+    confirmButton: {
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+        height: 54,
+        marginBottom: 15,
+        borderRadius: 27,
+        backgroundColor: defaultStyles.colors.green,
     },
     cancelButton: {
         justifyContent: "center",

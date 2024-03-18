@@ -13,7 +13,13 @@ import TrapScreen from "../screens/TrapScreen";
 import colors from "../config/colors";
 import defaultStyles from "../config/defaultStyles";
 
-const TrapTiles = ({ view, traps, connectionStatus, writeData }) => {
+const TrapTiles = ({
+    view,
+    traps,
+    connectionStatus,
+    writeData,
+    updateStatus,
+}) => {
     const [trapModalVisible, setTrapModalVisible] = useState(false);
     const [selectedTrap, setSelectedTrap] = useState(null);
 
@@ -80,6 +86,7 @@ const TrapTiles = ({ view, traps, connectionStatus, writeData }) => {
                         trap={selectedTrap}
                         closeModal={() => setTrapModalVisible(false)}
                         writeData={writeData}
+                        updateStatus={updateStatus}
                     />
                 </Modal>
             </>
@@ -137,6 +144,7 @@ const TrapTiles = ({ view, traps, connectionStatus, writeData }) => {
                         trap={selectedTrap}
                         closeModal={() => setTrapModalVisible(false)}
                         writeData={writeData}
+                        updateStatus={updateStatus}
                     />
                 </Modal>
             </>

@@ -2,15 +2,21 @@ import { View, TouchableOpacity, Modal, StyleSheet } from "react-native";
 import { useState } from "react";
 import { MaterialIcons, FontAwesome6 } from "@expo/vector-icons";
 import AddScreen from "../screens/AddScreen";
+import HelpScreen from "../screens/HelpScreen";
 import defaultStyles from "../config/defaultStyles";
 
 const MainNavBar = ({ handleAddTrap }) => {
+    // State variables to control modals
+    const [helpModalVisible, setHelpModalVisible] = useState(false);
     const [addModalVisible, setAddModalVisible] = useState(false);
 
     return (
         <>
             <View style={styles.container}>
-                <TouchableOpacity>
+                <TouchableOpacity
+                    activeOpacity={0.6}
+                    onPress={() => setHelpModalVisible(true)}
+                >
                     <FontAwesome6 name="question" size={30} color="black" />
                 </TouchableOpacity>
                 <View style={styles.borderCircle}>
@@ -32,6 +38,9 @@ const MainNavBar = ({ handleAddTrap }) => {
                     handleAddTrap={handleAddTrap}
                     closeModal={() => setAddModalVisible(false)}
                 />
+            </Modal>
+            <Modal visible={helpModalVisible} animationType="slide">
+                <HelpScreen closeModal={() => setHelpModalVisible(false)} />
             </Modal>
         </>
     );

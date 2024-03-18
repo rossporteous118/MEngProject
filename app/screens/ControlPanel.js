@@ -202,20 +202,23 @@ const ControlPanel = () => {
                 );
             if (characteristic) {
                 console.log("Data sent to characteristic");
-                const [commandText, trapID] = command.split("-");
-                const updatedTraps = traps.map((trap) => {
-                    if (trap.id == trapID) {
-                        const updatedStatus =
-                            commandText === "SET" ? "Active" : "Inactive";
-                        return { ...trap, status: updatedStatus };
-                    }
-                    return trap;
-                });
-                setTraps(updatedTraps);
             }
         } catch (error) {
             console.error("Error writing data to characteristic:", error);
         }
+    };
+
+    const updateStatus = (command) => {
+        const [commandText, trapID] = command.split("-");
+        const updatedTraps = traps.map((trap) => {
+            if (trap.id == trapID) {
+                const updatedStatus =
+                    commandText === "SET" ? "Active" : "Inactive";
+                return { ...trap, status: updatedStatus };
+            }
+            return trap;
+        });
+        setTraps(updatedTraps);
     };
 
     // Begin searching for devices on app launch
@@ -244,6 +247,7 @@ const ControlPanel = () => {
                 traps={traps}
                 connectionStatus={connectionStatus}
                 writeData={writeData}
+                updateStatus={updateStatus}
             />
             <MainNavBar handleAddTrap={handleAddTrap} />
         </View>
