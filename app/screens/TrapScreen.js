@@ -7,7 +7,7 @@ const TrapScreen = ({ trap, closeModal, writeData }) => {
     // Set display icon
     const icon = trap.status === "Active" ? "lock" : "lock-open";
     // Set confirmtion message
-    const command = trap.status === "Active" ? "release" : "set";
+    const command = trap.status === "Active" ? "RELEASE" : "SET";
 
     return (
         <SafeScreen>
@@ -43,7 +43,7 @@ const TrapScreen = ({ trap, closeModal, writeData }) => {
                 >
                     <MaterialCommunityIcons
                         name={icon}
-                        size={45}
+                        size={60}
                         color={defaultStyles.colors.white}
                     />
                 </TouchableOpacity>
@@ -60,6 +60,14 @@ const TrapScreen = ({ trap, closeModal, writeData }) => {
                     <View style={styles.textRow}>
                         <Text style={styles.typeCell}>Status:</Text>
                         <Text style={styles.textCell}>{trap.status}</Text>
+                    </View>
+                    <View style={styles.textRow}>
+                        <Text style={styles.typeCell}>Latitude:</Text>
+                        <Text style={styles.textCell}>{trap.latitude}</Text>
+                    </View>
+                    <View style={styles.textRow}>
+                        <Text style={styles.typeCell}>Longitude:</Text>
+                        <Text style={styles.textCell}>{trap.longitude}</Text>
                     </View>
                 </View>
 
@@ -94,17 +102,17 @@ const styles = StyleSheet.create({
     mainContainer: {
         paddingTop: 50,
         paddingHorizontal: 20,
-        height: "80%",
+        height: "90%",
         alignItems: "center",
         justifyContent: "space-between",
     },
     iconContainer: {
         justifyContent: "center",
         alignItems: "center",
-        height: 150,
-        width: 150,
+        height: 200,
+        width: 200,
         backgroundColor: defaultStyles.colors.blue,
-        borderRadius: 75,
+        borderRadius: 100,
         shadowOffset: { width: 5, height: 5 },
         shadowOpacity: 0.2,
         shadowRadius: 10,
@@ -122,12 +130,13 @@ const styles = StyleSheet.create({
         ...defaultStyles.defaultFont,
     },
     textCell: {
-        flex: 3,
+        flex: 2,
         fontSize: 18,
         ...defaultStyles.defaultFont,
     },
     buttonContainer: {
         width: "100%",
+        marginBottom: 50,
     },
     cancelButton: {
         justifyContent: "center",

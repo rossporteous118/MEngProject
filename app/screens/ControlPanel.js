@@ -67,9 +67,27 @@ const ControlPanel = () => {
 
     // Dummy data to be removed
     const initialTraps = [
-        { id: 1, name: "Trap 1", status: "Inactive" },
-        { id: 2, name: "Trap 2", status: "Inactive" },
-        { id: 3, name: "Trap 3", status: "Active" },
+        {
+            id: 232,
+            name: "Trap 1",
+            status: "Inactive",
+            latitude: 27.38955307006836,
+            longitude: -3.36949636064336,
+        },
+        {
+            id: 78,
+            name: "Trap 2",
+            status: "Inactive",
+            latitude: 27.38955307006836,
+            longitude: -3.36949636064336,
+        },
+        {
+            id: 659,
+            name: "Trap 3",
+            status: "Active",
+            latitude: 27.38955307006836,
+            longitude: -3.36949636064336,
+        },
     ];
 
     // State variable to store traps
@@ -79,6 +97,8 @@ const ControlPanel = () => {
             id: trap.id,
             name: trap.name,
             status: "Inactive",
+            latitude: trap.latitude,
+            longitude: trap.longitude,
         };
         const updatedTraps = [...traps, newTrap];
         setTraps(updatedTraps);
@@ -186,7 +206,7 @@ const ControlPanel = () => {
                 const updatedTraps = traps.map((trap) => {
                     if (trap.id == trapID) {
                         const updatedStatus =
-                            commandText === "set" ? "Active" : "Inactive";
+                            commandText === "SET" ? "Active" : "Inactive";
                         return { ...trap, status: updatedStatus };
                     }
                     return trap;
