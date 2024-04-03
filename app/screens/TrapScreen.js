@@ -5,7 +5,7 @@ import defaultStyles from "../config/defaultStyles";
 
 const TrapScreen = ({ trap, closeModal, writeData, updateStatus }) => {
     // Set display icon
-    const icon = trap.status === "Active" ? "lock" : "lock-open";
+    const icon = trap.status === "Active" ? "lock-open" : "lock";
     // Set confirmtion message
     const command = trap.status === "Active" ? "RELEASE" : "SET";
 

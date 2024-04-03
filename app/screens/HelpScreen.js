@@ -23,7 +23,7 @@ const HelpScreen = ({ closeModal }) => {
         {
             id: 3,
             instruction:
-                "Select the add button located at the bottom of the control panel to add a new trap. Make sure that the ID you enter matches the code on your physical trap.",
+                "Select the add button located at the bottom of the control panel to add a new trap. Make sure that the ID you enter matches the address on your physical trap.",
         },
         {
             id: 4,

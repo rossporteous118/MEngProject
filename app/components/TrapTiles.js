@@ -26,7 +26,7 @@ const TrapTiles = ({
     // Only allow trap select if modem is connected.
     const handleTrapPress = (trap) => {
         if (connectionStatus != "Connected") {
-            Alert.alert("Please connect to modem before modifying traps");
+            Alert.alert("Please connect to a modem before modifying any trap");
         } else {
             setTrapModalVisible(true);
             setSelectedTrap(trap);
